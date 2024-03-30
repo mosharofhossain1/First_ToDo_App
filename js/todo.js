@@ -1,43 +1,40 @@
-// Step -1
+// Step:- 1
 
-const inputArea = document.querySelector('.input_area input');
-const inputBtn = document.querySelector('.input_area button');
-const todoList = document.querySelector('.todo_list');
+const inputField = document.querySelector('.input_area input');
+const addBtn = document.querySelector('.input_area button');
+const listAdd = document.querySelector('.add_list');
 
-// Step - 2
 
-inputBtn.addEventListener('click', function(e){
-    const taskName = inputArea.value;
-    if(taskName){
-        const li = document.createElement('li');
-        li.innerHTML = `${taskName} <button id='delete'>X</button>`;
-        todoList.append(li)
-        inputArea.value = '';
+
+// Step :- 2
+
+addBtn.addEventListener('click', function(){
+    const text = inputField.value;
+    const li = document.createElement('li');
+    li.style.listStyleType = 'hiden'
+    li.innerHTML = `${text} <button id='delete'>X</button>`;
+    listAdd.append(li);
+    inputField.value = '';
+});
+
+// Step:- 3
+listAdd.addEventListener('click', function(event){
+    const removeElement = event.target;
+    if(removeElement.id === 'delete'){
+        removeElement.parentElement.remove()
     }
-    
+
 })
 
-// Steop - 3 
-
-todoList.addEventListener('click', function(e){
-    const el = e.target;
-    if(el.id === 'delete'){
-        el.parentElement.remove();
-    }
-})
-
-// Step - 4
-
-inputArea.addEventListener('keydown', function(e){
-    const enterAdd = e.target.value;
+// Step:- 4
+inputField.addEventListener('keydown', function(e){
     if(e.key === 'Enter'){
-        e.preventDefault();
+        const text = inputField.value;
         const li = document.createElement('li');
-        li.innerHTML = `${enterAdd} <button id='delete'>X</button>`;
-        todoList.append(li)
-        inputArea.value = '';
-    }
-    else if(e === ' ' ){
-       alert('please provide valid info')
+        li.style.listStyleType = 'hiden'
+        li.innerHTML = `${text} <button id='delete'>X</button>`
+        listAdd.append(li);
+        inputField.value = '';
     }
 })
+ 
